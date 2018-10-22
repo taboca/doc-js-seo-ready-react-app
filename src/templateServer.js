@@ -1,4 +1,3 @@
-// html skeleton provider
 function template(title, initialState = {}, content = "") {
 
   let page = `<!DOCTYPE html>

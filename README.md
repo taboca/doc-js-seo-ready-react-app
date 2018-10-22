@@ -99,3 +99,68 @@ app.get('/', (req, res) => {
 });
 
 ```
+
+Notice that "./views" doesn't exist - this is the result of your "babel" script (see package.json).
+
+## Looking at templateServer and the React rendered as string
+
+The HTML that is sent to the browser is a bit different in comparison with the standard approach used in client-only React apps.
+
+First, it overrides the window.__STATE__.
+
+In addition, notice that HTML will be statically served after being rendered by the ssr function.
+
+```
+function template(title, initialState = {}, content = "") {
+
+  let page = `<!DOCTYPE html>
+              <html lang="en">
+              <head>
+                <meta charset="utf-8">
+                <title> ${title} </title>
+              </head>
+              <body>
+                <div class="content">
+                   <div id="app" class="wrap-inner">
+                      ${content}
+                   </div>
+                </div>
+                <script>
+                   window.__STATE__ = ${JSON.stringify(initialState)}
+                </script>
+                <script src="assets/appClient.js"></script>
+              </body>
+              `;
+
+  return page;
+}
+
+module.exports = template;
+
+```
+
+The server React renderer
+
+```
+import React from 'react'
+import { renderToString } from 'react-dom/server'
+import { Provider } from 'react-redux'
+import configureStore from './store/configureStore'
+import App from './components/app'
+
+module.exports = function render(initialState) {  // Configure the store with the initial state provided
+  const store = configureStore(initialState)
+
+  let content = renderToString(
+    <Provider store={store} >
+       <App />
+    </Provider>
+  );
+
+  // Get a copy of store data to create the same store on client side
+  const preloadedState = store.getState()
+
+  return {content, preloadedState};
+}
+
+```

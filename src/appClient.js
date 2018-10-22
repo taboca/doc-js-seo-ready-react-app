@@ -1,7 +1,9 @@
+// This is the client-side companion
+
 import React from 'react'
 import {hydrate} from 'react-dom'
 import {Provider} from 'react-redux'
-import configureStore from './redux/configureStore'
+import configureStore from './store/configureStore'
 import App from './components/app'
 
 const state = window.__STATE__;

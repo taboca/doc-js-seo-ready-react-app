@@ -1,12 +1,12 @@
 const express = require('express'),
           app = express(),
-     template = require('./views/template')
+     template = require('./views/templateServer')
          path = require('path');
 
 
 // Serving static files
 app.use('/assets', express.static(path.resolve(__dirname, 'assets')));
-app.use('/media', express.static(path.resolve(__dirname, 'media')));
+//app.use('/media', express.static(path.resolve(__dirname, 'media')));
 
 // hide powered by express
 app.disable('x-powered-by');
@@ -17,12 +17,11 @@ app.listen(process.env.PORT || 3000);
 const data = require('./assets/data.json');
 
 let initialState = {
-  isFetching: false,
-  apps: data
+  sections: data
 }
 
 //SSR function import
-const ssr = require('./views/server');
+const ssr = require('./views/appServer');
 
 // server rendered home page
 app.get('/', (req, res) => {

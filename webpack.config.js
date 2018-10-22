@@ -1,8 +1,8 @@
 const path = require('path');
 module.exports = {
   entry: {
-    client: './src/appClient.js',
-    bundle: './src/appBundle.js'
+    appClient: './src/appClient.js',
+    appBundle: './src/appBundle.js'
   },
   output: {
     path: path.resolve(__dirname, 'assets'),

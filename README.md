@@ -139,7 +139,9 @@ module.exports = template;
 
 ```
 
-The server React renderer
+### The server React renderer
+
+Notice the use of React's renderToString functionality.
 
 ```
 import React from 'react'
@@ -162,5 +164,34 @@ module.exports = function render(initialState) {  // Configure the store with th
 
   return {content, preloadedState};
 }
+
+```
+
+## Enabling the initial static and connecting it with hydrate
+
+If you see the above initial HTML it also brought the appClient.js
+
+This makes the brige instead of using the standard ReactDOM.render
+
+```
+// This is the client-side companion
+
+import React from 'react'
+import {hydrate} from 'react-dom'
+import {Provider} from 'react-redux'
+import configureStore from './store/configureStore'
+import App from './components/app'
+
+const state = window.__STATE__;
+delete window.__STATE__;
+
+const store = configureStore(state);
+
+hydrate(
+  <Provider store={store} >
+     <App />
+  </Provider>,
+  document.querySelector('#app')
+);
 
 ```

@@ -27,7 +27,7 @@ In addition, now we will need to use Babel cli, as we will compile scripts aimin
 npm install @babel/cli -D
 ```
 
-## .babel.rc
+## .babelrc
 
 ```
 {

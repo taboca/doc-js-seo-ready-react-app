@@ -71,6 +71,29 @@ Within package.json
 
 ```
 
+## Modules for react, react-dom and redux
+
+```
+npm install react react-dom --save
+npm install redux react-redux --save
+npm install redux-thunk --save
+npm install express --save
+```
+
+At this point, we must have the following modules (in your package.json) as dependencies for the runtime execution:
+
+```
+"dependencies": {
+  "express": "^4.16.4",
+  "react": "^16.5.2",
+  "react-dom": "^16.5.2",
+  "react-redux": "^5.0.7",
+  "redux": "^4.0.1",
+  "redux-thunk": "^2.3.0"
+},
+
+```
+
 ## Server side rendering for the initial load  
 
 ```

@@ -9,7 +9,7 @@
 * Ref https://github.com/taboca/doc-js-babel-react-less
 
 ```
-npm install webpack webpack-cli --save-dev
+npm install webpack webpack-cli  -D
 ```
 ## Babel-based for React dev using ES6 and ESM (check this wording)
 

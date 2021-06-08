@@ -1,5 +1,5 @@
 
-## References
+## Study notes - assembling a React site optimized with server-side rendering
 
 * https://medium.freecodecamp.org/server-side-rendering-your-react-app-in-three-simple-steps-7a82b95db82e
 * https://github.com/taboca/doc-js-babel-react-less
